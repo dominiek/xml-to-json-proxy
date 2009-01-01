@@ -1,0 +1,16 @@
+<html>
+  <body>
+    <a href="javascript: proxy.get('callback_on_success', 'http://www.imeem.com/api/xml/mediaSearch?&query=Trentemoller&mediaType=music&version=1.0&apiKey=02cf87d2-8df5-40e4-8bc4-28bcbdcc58a2&sig=bdd0ffc108c165c4cb3df840fccd3634');">perform XML call on Imeem API</a>
+    
+    <script type="text/javascript" src="xml_json_proxy.js"></script>
+    <script type="text/javascript">
+      function callback_on_error(code, message) {
+        alert(code + ': '+ message);
+      }
+      function callback_on_success(url,　jsonml) {
+        alert(jsonml);
+      }
+      proxy = new XMLJSONProxy('error_callback');
+    </script>
+  </body>
+</html>

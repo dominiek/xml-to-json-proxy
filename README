@@ -1,0 +1,35 @@
+
+= XML to JSON Proxy =
+
+Tools that allow client-side XML calls in the browser. Using Flash crossdomain calls, the XML is converted to JSONML and delivered in JavaScript.
+
+== When to use? ==
+
+you want to do a simple light integration, but the API your using only supports XML calls or JSON calls without callbacks. An example service at the moment of writing is Imeem.com. To work around doing browser-client-side calls, we can use a Flash/SWF proxy (written in ActionScript 3) that does the XML call and delivers it in JSONML format (http://jsonml.org/) to a Javascript callback.
+
+Note: this was originally written for Last.fm - which at the time didn't have JSON callback support in their API, now they do.
+
+== Example code ==
+
+Check xml_json_proxy.html for an example of how to use this with Imeem.
+
+Setting up the proxy:
+
+<script type="text/javascript" src="xml_json_proxy.js"></script>
+<script type="text/javascript">
+  function callback_on_error(code, message) {
+    alert(code + ': '+ message);
+  }
+  function callback_on_success(url,　jsonml) {
+    alert(jsonml);
+  }
+  proxy = new XMLJSONProxy('error_callback');
+</script>
+
+Performing a GET call (POST support is yet to come):
+
+proxy.get('callback_on_success', 'http://url.of.call.xml/');
+
+== License ==
+
+All is Creative Commons attributed to Dominiek ter Heide (http://dominiek.com/)
